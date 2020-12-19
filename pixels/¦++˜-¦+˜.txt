@@ -1,0 +1,30 @@
+1、将test文件夹和sd_run.sh拷贝入sd卡根目录
+2、上电前插入设备
+3、function.ini 文件里面对应的motor,ircut,audio,wifi,motor_flip,motor_mirror 6个功能。若想打开相应功能请修改其值为yes；另外还支持language和wifistartup的设置，配置相关选项，如不需要可在该行前面用#注销
+4、wifiall文件夹里面的wifiSetup.ini里面有路由相关配置熟悉 网关 IP 掩码 电脑IP 通道号之类的设置 需要产测人员配置；computerip.txt中添加预览设备的电脑的IP，需要产测人员配置添加
+5、电机功能现象motor 摇头机会进行上下左右旋转
+6、ircut功能 暂时提议不要开启;在后面的wifi功能里面启动Sofia的时候ircut会进行切换的！所以这个功能建议其值为no--如果开启并需要修改切换次数，只要添加或者删除ircut.sh里$script_path/ircut执行的次数即可
+7、led功能用于测试飞碟、白光和双光灯泡的白光灯和红外灯、音乐灯的白光和彩光灯、双光枪机的白光和红外灯，led/led.sh脚本内sleep 2为延时时间，$script_path/led 0 2，第一个参数0表示白光灯、1表示红外灯、2表示音乐灯的白光、3表示音乐灯的彩光；第二个参数2表示亮灯时间2秒，需要根据不同的产品修改led/led.sh
+8、audio功能描述，先录音5秒后，然后播放
+9、wifi功能，连接路由器的时候会播报正在连接，如果连接成功会播报连接路由器成功，失败的话会播报连接路由器失败，如果失败请看一下是否没有天线或者wifiSetup.ini里面的配置信息是否正确
+10、添加默认语言配置功能，可替代CMS上的默认语言配置，可修改配置文件function.ini中的language的值为：SimpChinese、English、Spanish,Portugal,ChineseEnglish（中英文只有全景设备支持），其他值则不会设置。
+11、添加wifi默认启动模式配置，可修改function.ini文件，wifistartup的值为Station表示路由模式，softAP表示直连模式，其他值则不会设置。注意：没有特殊说明，雄迈精品程序不需要修改这项
+12、IRCutReverse表示是否配置默认ircut反序
+13、InfraredReverse:日夜模式电平是否反序
+14、DoubleLightCamera:XM530是否配置成双光枪机，默认普通枪机
+15、video_mirror表示是否配置图像默认左右翻转；video_flip表示是否配置图像默认上下翻转
+16、预置点巡航功能，支持设置预置点巡航功能的支持与否，MOTOR_PRESET:yes表示支持，no表示不支持；MAX_DEGREE_X和MAX_DEGREE_Y分别表示水平和垂直的最大角度
+17、全景拍照功能（需要启用并配置第14点的预置点巡航功能，并配置水平线的垂直角度MID_DEGREE_Y）
+18、人形跟踪功能（需要开电机自检，目前就是要启用并配置第14点的预置点巡航功能）：
+	（1）track_module_open：人形跟踪功能开关，yes表示支持，no表示不支持
+	（2）track_motor_left：电机是否左右翻转，如果人形跟踪的左右方向有反向，比如人向左走，电机却往右转，就设置track_motor_left为right，如果方向一致，则默认为left
+	（3）track_motor_up：电机是否上下翻转，如果人形跟踪的上下方向有反向，比如人向上走，电机却往下转，就设置track_motor_up为down，如果方向一致，则默认为up
+	（4）track_width_steps：摇头机从画面的左运动到右需要的步数，这个参数与sensor和镜头有关系，需要测试得到
+	（5）track_height_steps：摇头机从画面的下运动到上需要的步数，这个参数与sensor和镜头有关系，需要测试得到
+	（6）track_default_degrees_y: 摇头机人形跟踪15分钟无移动会恢复到默认位置，该设置为垂直方向角度（如：30代表30度）,参数值要在MAX_DEGREE_Y数值范围内
+
+17.如果需要升级新程序并做产测，需升级的文件改名为sd_upgrade_all.bin放在sd卡根目录下
+
+注：支持设置电机转向，在function.ini中配置,motor_flip设置电机上下是否反转，motor_mirror设置左右
+注：#表示注销，无效；如需设置请删除#
+

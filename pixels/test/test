@@ -1,0 +1,12 @@
+/home/test
+LANGUAGE = SimpChinese
+STARTUPTYPE = Station
+getconf motor_flip failed
+getconf motor_mirror failed
+getconf track_module_open failed
+getconf MOTOR_PRESET failed
+getconf IRCutReverse failed
+getconf video_mirror failed
+getconf video_flip failed
+getconf InfraredReverse failed
+WIFI begin
